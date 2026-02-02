@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tweeter</title>
+</head>
+<body>
+<h2>Tweeter</h2>
+
+{% if user.is_authenticated %}
+    Welcome {{ user.username }} |
+     |
+    <a href="{% url 'create' %}">New Tweet</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a> |
+    <a href="{% url 'register' %}">Register</a>
+{% endif %}
+<form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+<hr>
+{% block content %}{% endblock %}
+</body>
+</html>

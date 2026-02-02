@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for tweet in tweets %}
+<p>
+<b>{{ tweet.user.username }}</b><br>
+{{ tweet.content }}<br>
+
+{% if tweet.image %}
+<img src="{{ tweet.image.url }}" width="200"><br>
+{% endif %}
+
+{% if user == tweet.user %}
+<a href="{% url 'edit' tweet.id %}">Edit</a>
+<a href="{% url 'delete' tweet.id %}">Delete</a>
+{% endif %}
+</p>
+<hr>
+{% endfor %}
+
+{% endblock %}
